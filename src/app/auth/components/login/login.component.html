@@ -4,6 +4,11 @@
       <div class="card card-signin my-4">
         <div class="card-body">
           <h3 class="card-title text-center">Sign in</h3>
+          <div *ngIf="errors && errors.length" class="alert alert-danger">
+            <ul>
+              <li *ngFor="let error of errors" >{{error}}</li>
+            </ul>
+          </div>
           <form class="form-signin" (ngSubmit)="login()" >
             <div class="form-label-group">
               <label for="input-username">Email</label>

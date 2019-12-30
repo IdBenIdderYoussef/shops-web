@@ -4,16 +4,26 @@
       <div class="card card-signin my-4">
         <div class="card-body">
           <h3 class="card-title text-center">Sign up</h3>
-          <form class="form-signin" (ngSubmit)="register()" >
+          <div *ngIf="errors && errors.length" class="alert alert-danger">
+            <ul>
+              <li *ngFor="let error of errors" >{{error}}</li>
+            </ul>
+          </div>
+          <form class="form-signin" (ngSubmit)="register()" #registerForm="ngForm" >
             <div class="form-label-group">
               <label for="input-username">Email</label>
+              <div *ngIf="username.invalid && username.touched">
+                <p class="text-danger" style="font-size: 1rem" *ngIf="username.errors?.required">
+                  Email is required!
+                </p>
+              </div>
               <input class="form-control"
-                     type="text"
+                     type="email"
                      [(ngModel)]="user.username"
                      #username="ngModel"
-                     name="username"
+                     name="email"
+                     email="true"
                      id="input-username"
-                     pattern=".+"
                      placeholder="Email"
                      autofocus
                      required="required">
@@ -21,6 +31,11 @@
             <div class="form-label-group">
               <label for="input-password">Password
               </label>
+              <div *ngIf="password.invalid && password.touched">
+                <p class="text-danger" style="font-size: 1rem" *ngIf="password.errors?.required">
+                  password is required!
+                </p>
+              </div>
               <input class="form-control"
                      type="password"
                      [(ngModel)]="user.password"
@@ -31,7 +46,31 @@
                      placeholder="Password"
                      required="required">
             </div>
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
+            <div class="form-label-group">
+              <label for="input-confirmation-password">Repeat password
+              </label>
+              <div *ngIf="confirmationPassword.invalid && confirmationPassword.touched">
+                <p class="text-danger" style="font-size: 1rem" *ngIf="confirmationPassword.errors?.required">
+                  confirmation password is required!
+                </p>
+                <p class="col-sm-4" *ngIf="password.value != confirmationPassword.value && !confirmationPassword.errors?.required"
+                   class="text-danger">
+                  The password does not match the confirmation password.
+                </p>
+              </div>
+              <input class="form-control"
+                     type="password"
+                     [(ngModel)]="user.confirmationPassword"
+                     #confirmationPassword="ngModel"
+                     name="confirmationPassword"
+                     type="password"
+                     id="input-confirmation-password"
+                     placeholder="Repeat password"
+                     required="required">
+            </div>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"
+                    [disabled]="submitted || !registerForm.valid || password.value != confirmationPassword.value"
+                    [class.btn-pulse]="submitted">Sign Up</button>
             <hr class="my-4">
           </form>
         </div>
