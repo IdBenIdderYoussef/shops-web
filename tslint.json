@@ -1,0 +1,10 @@
+{
+  "rulesDirectory": [
+    "codelyzer"
+  ],
+  "rules": {
+    "no-duplicate-variable": true,
+    "no-duplicate-imports": true,
+    "no-unused-variable": true
+  }
+}
