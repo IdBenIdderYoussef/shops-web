@@ -14,6 +14,7 @@ export class NearbyShopsListComponent implements OnInit {
 
   nearbyShops: Shop[];
   location: Location = {};
+  permitted: boolean = true; // var for check if we have permission of using client location
 
   constructor(private shopService: ShopService,
               private locationService: LocationService) {
@@ -24,19 +25,22 @@ export class NearbyShopsListComponent implements OnInit {
   }
 
   getCurrentLocation() {
-    this.locationService.getCurrentLocation().then(location =>{
+    this.locationService.getCurrentLocation().then(location => {
       this.location.longitude = location.longitude;
       this.location.latitude = location.latitude;
+      this.permitted = true;
       this.getNearbyShops();
-    }).catch(error=>{
-      console.log(error); //Todo change this line
-    })
-      }
+    }).catch(error => {
+      this.location = null;
+      this.permitted = false;
+      this.getNearbyShops();
+    });
+  }
 
   getNearbyShops() {
     this.shopService.getNearbyShops(this.location).subscribe(result => {
       this.nearbyShops = result;
-    },error => {
+    }, error => {
 
     });
   }
@@ -45,7 +49,12 @@ export class NearbyShopsListComponent implements OnInit {
 
   }
 
-  like() {
-
+  like(shop: Shop) {
+    this.shopService.like(shop.id).subscribe(result => {
+      let index = this.nearbyShops.indexOf(shop);
+      if (index !== -1) {
+        this.nearbyShops.splice(index, 1);
+      }
+    });
   }
 }

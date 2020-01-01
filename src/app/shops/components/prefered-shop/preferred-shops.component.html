@@ -1,1 +1,16 @@
-<p>prefered-shop works!</p>
+<div *ngIf="!preferredShop || !preferredShop.length" class="alert alert-warning" role="alert">
+  You don't have any preferred shops for now !
+</div>
+<div class="row">
+  <div *ngFor="let shop of preferredShop">
+    <div class="card mx-4 mb-5" style="width:320px">
+      <div class="card-header">
+        <h4 class="card-title">{{shop.name}}</h4>
+      </div>
+      <img class="card-img-top" src="{{shop.image}}" alt="Card image" width="320" height="300">
+      <div class="card-body">
+        <button (click)="remove(shop)" class="btn btn-danger mx-3">Remove</button>
+      </div>
+    </div>
+  </div>
+</div>
