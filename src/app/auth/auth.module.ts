@@ -6,13 +6,14 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {AuthComponent} from './auth.component';
 import {FormsModule} from '@angular/forms';
 import {JwtModule} from '@auth0/angular-jwt';
+import { LogoutComponent } from './components/logout/logout.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
 
 @NgModule({
-  declarations: [AuthComponent, LoginComponent, RegisterComponent],
+  declarations: [AuthComponent, LoginComponent, RegisterComponent, LogoutComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
