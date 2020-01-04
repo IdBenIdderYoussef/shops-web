@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'shops',
-    loadChildren: './shops/shops.module#ShopsModule',
+    loadChildren: 'src/app/shops/shops.module#ShopsModule',
     canActivate : [AuthGuard]
   }
 ];

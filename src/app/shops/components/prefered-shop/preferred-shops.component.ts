@@ -10,6 +10,7 @@ import {Shop} from '../../models/shop.model';
 export class PreferredShopsComponent implements OnInit {
 
   preferredShop: Shop[];
+  isEmpty= false; // track if preferred shops list is empty
 
   constructor(private shopService: ShopService) {
   }
@@ -21,6 +22,7 @@ export class PreferredShopsComponent implements OnInit {
   getPreferredShops() {
     this.shopService.getPreferredShops().subscribe(result => {
       this.preferredShop = result;
+      this.isEmpty = this.preferredShop === null || this.preferredShop.length === 0
     }, error => {
 
     });
@@ -32,6 +34,7 @@ export class PreferredShopsComponent implements OnInit {
       if(index !== -1){
         this.preferredShop.splice(index,1);
       }
+      this.isEmpty = this.preferredShop === null || this.preferredShop.length === 0
     });
   }
 }

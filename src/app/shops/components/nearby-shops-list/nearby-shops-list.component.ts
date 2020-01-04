@@ -45,9 +45,6 @@ export class NearbyShopsListComponent implements OnInit {
     });
   }
 
-  dislike() {
-
-  }
 
   like(shop: Shop) {
     this.shopService.like(shop.id).subscribe(result => {
@@ -57,4 +54,14 @@ export class NearbyShopsListComponent implements OnInit {
       }
     });
   }
+
+  dislike(shop: Shop) {
+    this.shopService.disLike(shop.id).subscribe(result => {
+      let index = this.nearbyShops.indexOf(shop);
+      if (index !== -1) {
+        this.nearbyShops.splice(index, 1);
+      }
+    });
+  }
+
 }

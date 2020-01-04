@@ -12,6 +12,7 @@ export class ShopService {
   nearbyShopsUrl = environment.apiRootUrl + '/v1/shops/nearby';
   likeShopUrl = environment.apiRootUrl + '/v1/shops/like';
   removeLikeShopUrl = environment.apiRootUrl + '/v1/shops/remove-like';
+  disLikeShopUrl = environment.apiRootUrl + '/v1/shops/dislike';
   preferredShopsUrl = environment.apiRootUrl + '/v1/shops/preferred-shops';
 
   constructor(private httpClient: HttpClient) {
@@ -31,6 +32,10 @@ export class ShopService {
 
   removeLike(shopId:number){
     return this.httpClient.post<any>(this.removeLikeShopUrl,shopId)
+  }
+
+  disLike(shopId:number){
+    return this.httpClient.post<any>(this.disLikeShopUrl,shopId)
   }
 
 }
