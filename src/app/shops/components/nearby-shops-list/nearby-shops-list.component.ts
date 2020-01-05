@@ -64,4 +64,27 @@ export class NearbyShopsListComponent implements OnInit {
     });
   }
 
+
+  calculateDistance(location1: Location, location2: Location):number {
+    if ((location1.latitude == location2.latitude) && (location1.longitude == location2.longitude)) {
+      return 0;
+    } else {
+      let radianLatitude1 = Math.PI * location1.latitude / 180;
+      let radianLatitude2 = Math.PI * location2.latitude / 180;
+      let theta = location1.longitude - location2.longitude;
+      let radianTheta = Math.PI * theta / 180;
+      let distance = Math.sin(radianLatitude1) * Math.sin(radianLatitude2) + Math.cos(radianLatitude1) * Math.cos(radianLatitude2) * Math.cos(radianTheta);
+      if (distance > 1) {
+        distance = 1;
+      }
+      distance = Math.acos(distance);
+      distance = distance * 180 / Math.PI;
+      distance = distance * 60 * 1.1515;
+
+      distance = distance * 1.609344;
+
+      return distance;
+    }
+  }
+
 }

@@ -1,4 +1,4 @@
 export interface Location {
-  longitude?:string,
-  latitude?:string
+  longitude?:number,
+  latitude?:number
 }

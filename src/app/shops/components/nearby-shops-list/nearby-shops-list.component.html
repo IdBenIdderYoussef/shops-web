@@ -5,12 +5,13 @@
   <div *ngFor="let shop of nearbyShops">
     <div class="card mx-4 mb-5" style="width:320px">
       <div class="card-header">
-      <h4 class="card-title">{{shop.name}}</h4>
+      <h5 class="card-title">{{shop.name}}</h5>
+      <p *ngIf="location != null" class="ml-1">{{calculateDistance(location,shop.location) | number : '1.0-0' | noComma}} Km</p>
       </div>
         <img class="card-img-top" src="{{shop.image}}" alt="Card image" width="320" height="300">
-      <div class="card-body">
-        <button (click)="dislike(shop)" class="btn btn-danger mx-3">Dislike</button>
-        <button (click)="like(shop)" class="btn btn-success">Like</button>
+      <div class="card-body align-self-center">
+        <button (click)="dislike(shop)" class="btn btn-danger mx-3 px-3">Dislike</button>
+        <button (click)="like(shop)" class="btn btn-success mx-3 px-3">Like</button>
       </div>
     </div>
   </div>
