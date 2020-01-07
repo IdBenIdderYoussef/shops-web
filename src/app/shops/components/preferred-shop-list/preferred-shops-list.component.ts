@@ -3,11 +3,11 @@ import {ShopService} from '../../services/shop.service';
 import {Shop} from '../../models/shop.model';
 
 @Component({
-  selector: 'app-preferred-shops',
-  templateUrl: './preferred-shops.component.html',
-  styleUrls: ['./preferred-shops.component.css']
+  selector: 'app-preferred-shops-list',
+  templateUrl: './preferred-shops-list.component.html',
+  styleUrls: ['./preferred-shops-list.component.css']
 })
-export class PreferredShopsComponent implements OnInit {
+export class PreferredShopsListComponent implements OnInit {
 
   preferredShop: Shop[];
   isEmpty= false; // track if preferred shops list is empty

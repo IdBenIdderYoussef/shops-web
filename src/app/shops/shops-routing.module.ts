@@ -2,7 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {ShopsComponent} from './shops.component';
 import {NearbyShopsListComponent} from './components/nearby-shops-list/nearby-shops-list.component';
-import {PreferredShopsComponent} from './components/prefered-shop/preferred-shops.component';
+import {PreferredShopsListComponent} from './components/preferred-shop-list/preferred-shops-list.component';
 
 const routes: Routes = [{
   path: '',
@@ -12,7 +12,7 @@ const routes: Routes = [{
     component: NearbyShopsListComponent,
   },{
     path: 'preferred',
-    component: PreferredShopsComponent
+    component: PreferredShopsListComponent
   }
   ]
 }];
